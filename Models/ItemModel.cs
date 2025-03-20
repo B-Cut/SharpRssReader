@@ -52,4 +52,11 @@ public class ItemModel(string title, string link, string description)
     /// The RSS channel that originated the item
     /// </summary>
     public string? Source { get; set; }
+    
+    /// <summary>
+    /// An optional extension of the RSS protocol designed to contain a page's actual content. If not <c>null</c> it
+    /// should be displayed instead of <see cref="Description"/>.
+    /// <seealso href="https://web.resource.org/rss/1.0/modules/content/"/>
+    /// </summary>
+    public string? Content { get; set; }
 }
