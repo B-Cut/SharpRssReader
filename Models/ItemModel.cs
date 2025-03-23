@@ -7,22 +7,31 @@ namespace RssReader.Models;
 /// <summary>
 /// The model of an RSS Channel item as per <see href="https://www.rssboard.org/rss-specification">RSS specification</see>.
 /// </summary>
-public class ItemModel(string title, string link, string description)
+public class ItemModel
 {
+    internal ItemModel() {}
+
+    public ItemModel(string title, string link, string description)
+    {
+        Title = title;
+        Link = link;
+        Description = description;
+    }
+    
     /// <summary>
     /// Title of the channel.
     /// </summary>
-    public string Title { get; set; } = title;
+    public string Title { get; set; }
 
     /// <summary>
     /// An url linking to the HTML version of the channel.
     /// </summary>
-    public string Link { get; set; } = link;
+    public string Link { get; set; }
     
     /// <summary>
     /// A description of the channel.
     /// </summary>
-    public string Description { get; set; } = description;
+    public string Description { get; set; }
     
     /// <summary>
     /// Email address of the author.

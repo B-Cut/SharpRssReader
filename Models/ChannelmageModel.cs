@@ -6,23 +6,32 @@ namespace RssReader.Models;
 /// This model represents the <c>image</c> sub-element of a channel
 /// as per the <see href="https://www.rssboard.org/rss-specification">RSS specification</see>.
 /// </summary>
-public class ChannelImageModel(string url, string title, string link)
+public class ChannelImageModel
 {
+    internal ChannelImageModel() { }
+
+    public ChannelImageModel(string imageUrl, string title, string originalLink)
+    {
+        ImageUrl = imageUrl;
+        Title = title;
+        Link = originalLink;
+    }
+    
     /// <summary>
     /// The URL pointing to the channel's image.
     /// </summary>
     //TODO: Implement image caching
-    public string ImageUrl { get; set; } = url;
-    
+    public string ImageUrl { get; set; }
+
     /// <summary>
     /// The image's description.
     /// </summary>
-    public string Title { get; init; } = title;
-    
+    public string? Title { get; init; }
+
     /// <summary>
     /// A link to the original site.
     /// </summary>
-    public string Link { get; init; } = link;
+    public string Link { get; init; }
 
     private uint _width = 88;
     private uint _height = 31;
