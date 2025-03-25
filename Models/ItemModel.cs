@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace RssReader.Models;
 
@@ -17,49 +18,78 @@ public class ItemModel
         Link = link;
         Description = description;
     }
-    
+
+    [XmlIgnore] // may not be needed
+    private string _title;
     /// <summary>
     /// Title of the channel.
     /// </summary>
-    public string Title { get; set; }
+    [XmlElement("title")]
+    public string Title
+    {
+        get { return _title ?? "No Title"; }
+        set { _title = value; }
+    }
 
     /// <summary>
     /// An url linking to the HTML version of the channel.
     /// </summary>
+    [XmlElement("link")]
     public string Link { get; set; }
     
+    [XmlIgnore]
+    private string _description;
+
     /// <summary>
     /// A description of the channel.
     /// </summary>
-    public string Description { get; set; }
+    [XmlElement("description")]
+    public string Description
+    {
+        get { return _description ?? "No Description"; ;} 
+        set { _description = value; }
+    }
     
     /// <summary>
     /// Email address of the author.
     /// </summary>
+    [XmlElement("author")]
     public string? Author { get; set; }
     
+    [XmlElement("category")]
     public List<string>? Categories { get; set; }
     
     /// <summary>
     /// The URL to a page containing comments related to the item
     /// </summary>
+    [XmlElement("comments")]
     public string? Comments { get; set; }
     
+    [XmlElement("enclusure")]
     public EnclosureModel? Enclosure { get; set; }
     
     /// <summary>
     /// A string that uniquely identifies an item
     /// </summary>
+    [XmlElement("guid")]
     public string? Guid { get; set; }
     
     /// <summary>
     /// The date the item was published in.
     /// </summary>
+    [XmlIgnore]
     public DateTime? PublishDate { get; set; }
+
+    public string? PubDateProxy
+    {
+        get => PublishDate.ToString();
+        set => PublishDate = Utils.ConvertToDateTime(value);
+    }
     
     /// <summary>
     /// The RSS channel that originated the item
     /// </summary>
+    [XmlElement("source")]
     public string? Source { get; set; }
     
     /// <summary>
@@ -67,5 +97,6 @@ public class ItemModel
     /// should be displayed instead of <see cref="Description"/>.
     /// <seealso href="https://web.resource.org/rss/1.0/modules/content/"/>
     /// </summary>
+    [XmlElement("content:encoded")]
     public string? Content { get; set; }
 }

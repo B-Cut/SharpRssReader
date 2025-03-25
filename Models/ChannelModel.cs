@@ -29,42 +29,7 @@ public class ChannelModel
     internal ChannelModel()
     { }
     
-    private DateTime? convertToDateTime(string value)
-    {
-        try
-        {
-            return DateTime.ParseExact(value, CultureInfo.InvariantCulture.DateTimeFormat.RFC1123Pattern,
-                CultureInfo.InvariantCulture.DateTimeFormat);
-        }
-        catch (FormatException)
-        {
-            // The format used by RSS for date time is the RFC 1123, which only recognizes the GMT timezone
-            // However, the received date may not conform to that pattern, so we need to do the conversion
-            
-            // TODO: Create timezone codes list
-            
-            /*
-            var pattern = @"[a-zA-Z]+, [0-9]+ [a-zA-Z]+ [0-9]+ [0-9]+:[0-9]+:[0-9]+ (?<timezone>[a-zA-Z]+)";
-            Regex findTimezone = new Regex(pattern, RegexOptions.Compiled);
-
-            var timezoneCode = findTimezone.Match(value).Groups["timezone"].Value;
-            TimeZoneInfo timezone;
-            TimeZoneInfo.TryFindSystemTimeZoneById(timezoneCode, out timezone);
-            if(timezone is not null)
-            {
-                // Changes the formate from TMZ to HH:MM
-                var newTimeZone = findTimezone.Replace("$timezone", timezone.BaseUtcOffset.ToString());
-                return DateTime.Parse(newTimeZone);
-            }
-            else
-            {
-                Console.Error.WriteLine($"Timezone {timezoneCode} not found");
-                return null;
-            }
-            */
-            return null;
-        }
-    }
+    
     public ChannelModel(string title, string description, string link)
     {
         Title = title;
@@ -128,7 +93,7 @@ public class ChannelModel
     public string? ProxyPublishedDate
     {
         get { return PublishedDate.ToString(); }
-        set { PublishedDate = convertToDateTime(value); }
+        set { PublishedDate = Utils.ConvertToDateTime(value); }
     }
     /// <summary>
     /// Last time the content of the channel changed.
@@ -140,12 +105,12 @@ public class ChannelModel
     public string? ProxyLastBuildDate
     {
         get { return LastBuildDate.ToString(); }
-        set { LastBuildDate = convertToDateTime(value);  }
+        set { LastBuildDate = Utils.ConvertToDateTime(value);  }
     }
     /// <summary>
     /// A list containing the channel's categories.
     /// </summary>
-    [XmlArrayItem("category")]
+    [XmlElement("category")]
     public List<string>? Category { get; set; }
     
     /// <summary>
@@ -156,8 +121,8 @@ public class ChannelModel
     
     /// <summary>
     /// Items associated with this channel.
-    /// </summary>XmlA
-    [XmlArrayItem("item")]
+    /// </summary>Xml
+    [XmlElement("item")]
     public List<ItemModel>? Items { get; set; }
     
     /// <summary>
