@@ -1,3 +1,5 @@
+using System.Xml.Serialization;
+
 namespace RssReader.Models;
 
 /// <summary>
@@ -20,15 +22,18 @@ public class EnclosureModel
     /// <summary>
     /// A link pointing to the enclosure content.
     /// </summary>
+    [XmlElement("link")]
     public string Link { get; set; }
     
     /// <summary>
     /// The size, in bytes, of the content.
     /// </summary>
+    [XmlElement("length")]
     public uint Length { get; set; }
 
     /// <summary>
     /// The MIME type of the enclosure's content.
     /// </summary>
+    [XmlElement("type")]
     public string MimeType { get; set; }
 }

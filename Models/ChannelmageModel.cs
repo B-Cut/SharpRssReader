@@ -1,4 +1,5 @@
 using System;
+using System.Xml.Serialization;
 
 namespace RssReader.Models;
 
@@ -14,33 +15,35 @@ public class ChannelImageModel
     {
         ImageUrl = imageUrl;
         Title = title;
-        Link = originalLink;
+        SiteLink = originalLink;
     }
     
     /// <summary>
     /// The URL pointing to the channel's image.
     /// </summary>
     //TODO: Implement image caching
+    [XmlElement("url")]
     public string ImageUrl { get; set; }
 
     /// <summary>
     /// The image's description.
     /// </summary>
+    [XmlElement("title")]
     public string? Title { get; init; }
 
     /// <summary>
     /// A link to the original site.
     /// </summary>
-    public string Link { get; init; }
+    [XmlElement("link")]
+    public string SiteLink { get; init; }
 
     private uint _width = 88;
     private uint _height = 31;
     
-    
-    
     /// <summary>
     /// Image's width. Maximum value is 144.
     /// </summary>
+    [XmlElement("width")]
     public uint Width
     {
         get => _width;
@@ -53,6 +56,7 @@ public class ChannelImageModel
     /// <summary>
     /// Image's Height. Maximum value is 400
     /// </summary>
+    [XmlElement("height")]
     public uint Height
     {
         get => _height;
