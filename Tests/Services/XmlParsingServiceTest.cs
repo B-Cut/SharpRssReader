@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using RssReader.Models;
 using RssReader.Services;
@@ -8,12 +9,12 @@ namespace RssReader.Tests.Services;
 [TestFixture]
 public class XmlParsingServiceTest
 {
-    private string testFilePath = Path.Join(TestUtils.GetResourcesDirectory(), "sample-rss-2.xml");
+    private string _testFilePath = Path.Join(TestUtils.GetResourcesDirectory(), "sample-rss-2.xml");
     
     [Test]
     public void ChannelIsCreatedTest()
     {
-        ChannelModel model = XmlParsingService.CreateChannelModelFromXml(testFilePath);
+        ChannelModel model = XmlParsingService.CreateChannelModelFromXml(_testFilePath);
         
         /*TODO: Find a more robust way to determine if deserialization was successful*/
         
@@ -27,7 +28,7 @@ public class XmlParsingServiceTest
     [Test]
     public void ItemsAreCreatedTest()
     {
-        ChannelModel model = XmlParsingService.CreateChannelModelFromXml(testFilePath);
+        ChannelModel model = XmlParsingService.CreateChannelModelFromXml(_testFilePath);
         
         // The test file has items properties that should be parsed
         Assert.That(model.Items, Is.Not.Empty);
@@ -37,6 +38,13 @@ public class XmlParsingServiceTest
             Assert.That(item.Description, Is.Not.Null);
             Assert.That(item.Link, Is.Not.Null);
         }
-        
+    }
+    
+    [TestCase<string>("BadRss.xml")]
+    [TestCase<string>("test.json")]
+    public void InvalidFileShouldReturnExceptionTest(string filename)
+    {
+        string path = Path.Join(TestUtils.GetResourcesDirectory(), filename);
+        Assert.Throws<FormatException>((() => XmlParsingService.CreateChannelModelFromXml(path)));
     }
 }

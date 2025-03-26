@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Xml.Serialization;
 using RssReader.Models;
@@ -12,12 +13,20 @@ public static class XmlParsingService
         FileStream fs = new FileStream(path, FileMode.Open);
         TextReader tr = new StreamReader(fs);
 
-        var Rss = (Rss) serializer.Deserialize(tr);
+        Rss rss;
+        try
+        {
+            rss = serializer.Deserialize(tr) as Rss;
+        }
+        catch (InvalidOperationException e)
+        {
+            throw new FormatException("Invalid Rss file", e);
+        }
         
         // Not sure if needed but safe
         tr.Close();
         fs.Close();
         
-        return Rss.Channel;
+        return rss.Channel;
     }
 }
