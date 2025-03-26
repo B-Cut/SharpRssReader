@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using NUnit.Framework;
 using RssReader.Models;
 using RssReader.Services;
@@ -12,9 +13,9 @@ public class XmlParsingServiceTest
     private string _testFilePath = Path.Join(TestUtils.GetResourcesDirectory(), "sample-rss-2.xml");
     
     [Test]
-    public void ChannelIsCreatedTest()
+    public void ShouldCreateChannelModelFromFile()
     {
-        ChannelModel model = XmlParsingService.CreateChannelModelFromXml(_testFilePath);
+        ChannelModel model = XmlParsingService.CreateChannelModelFromFile(_testFilePath);
         
         /*TODO: Find a more robust way to determine if deserialization was successful*/
         
@@ -26,9 +27,9 @@ public class XmlParsingServiceTest
     }
 
     [Test]
-    public void ItemsAreCreatedTest()
+    public void ShouldCreateItemsWhenParsingFile()
     {
-        ChannelModel model = XmlParsingService.CreateChannelModelFromXml(_testFilePath);
+        ChannelModel model = XmlParsingService.CreateChannelModelFromFile(_testFilePath);
         
         // The test file has items properties that should be parsed
         Assert.That(model.Items, Is.Not.Empty);
@@ -45,6 +46,18 @@ public class XmlParsingServiceTest
     public void InvalidFileShouldReturnExceptionTest(string filename)
     {
         string path = Path.Join(TestUtils.GetResourcesDirectory(), filename);
-        Assert.Throws<FormatException>((() => XmlParsingService.CreateChannelModelFromXml(path)));
+        Assert.Throws<FormatException>((() => XmlParsingService.CreateChannelModelFromFile(path)));
+    }
+
+    [Test]
+    public void ShouldCreateChannelModelFromString()
+    {
+        string content = File.ReadAllText(_testFilePath);
+        
+        var model = XmlParsingService.CreateChannelModelFromString(content);
+        Assert.That(model, Is.Not.Null);
+        Assert.That(model.Title, Is.Not.Null);
+        Assert.That(model.Description, Is.Not.Null);
+        Assert.That(model.Link, Is.Not.Null);
     }
 }
