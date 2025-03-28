@@ -3,11 +3,12 @@
         xmlns:vm="using:RssReader.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="820" d:DesignHeight="450"
         x:Class="RssReader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        Width="820" Height="450"
         Icon="/Assets/avalonia-logo.ico"
-        Title="RssReader">
+        Title="Sharp Reader">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +16,26 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid 
+        ColumnDefinitions="200, *"
+        ShowGridLines="True">
+        
+        <Border Background="Linen" Padding="15">
+            <Grid RowDefinitions="160, *" ShowGridLines="True">
+                <StackPanel Spacing="5">
+                    <TextBox Margin="0 0 0 10"></TextBox>
+                    <Button HorizontalAlignment="Stretch">Feed</Button>
+                    <Button HorizontalAlignment="Stretch">Channels</Button>
+                    <Button HorizontalAlignment="Stretch">Bookmarks</Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
+                    <TextBlock FontSize="12">Category</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Background="Plum">
+            
+        </Border>
+    </Grid>
 
 </Window>
