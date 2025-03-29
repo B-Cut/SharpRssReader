@@ -34,7 +34,12 @@
             </Grid>
         </Border>
         <Border Grid.Column="1" Background="Plum">
-            
+            <Grid RowDefinitions="*" ColumnDefinitions="*">
+                <Border Background="MediumPurple"></Border>
+                <Button 
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Margin="10">Add</Button>
+            </Grid>
         </Border>
     </Grid>
 
