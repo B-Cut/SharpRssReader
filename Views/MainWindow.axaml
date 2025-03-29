@@ -20,7 +20,7 @@
         ColumnDefinitions="200, *"
         ShowGridLines="True">
         
-        <Border Background="Linen" Padding="15">
+        <Border Name="SideBar" Padding="15">
             <Grid RowDefinitions="160, *" ShowGridLines="True">
                 <StackPanel Spacing="5">
                     <TextBox Margin="0 0 0 10"></TextBox>
@@ -29,14 +29,15 @@
                     <Button HorizontalAlignment="Stretch">Bookmarks</Button>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
-                    <TextBlock FontSize="12">Category</TextBlock>
+                    <TextBlock Name="CategoryHeader">Category</TextBlock>
                 </StackPanel>
             </Grid>
         </Border>
-        <Border Grid.Column="1" Background="Plum">
+        <Border Grid.Column="1" Name="MainContentWrapper">
             <Grid RowDefinitions="*" ColumnDefinitions="*">
-                <Border Background="MediumPurple"></Border>
+                <Border Name="MainContent"></Border>
                 <Button 
+                    Name="AddButton"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                     Margin="10">Add</Button>
             </Grid>
