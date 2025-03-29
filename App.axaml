@@ -9,6 +9,54 @@
         <local:ViewLocator/>
     </Application.DataTemplates>
   
+    <Application.Resources>
+        <!-- This application is using the RosePine colorscheme: https://rosepinetheme.com -->
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="PrimaryBackground">#232136</SolidColorBrush>
+                    <SolidColorBrush x:Key="SecondaryBackground">#2a273f</SolidColorBrush>
+                    <SolidColorBrush x:Key="TertiaryBackground">#393552</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="MutedForeground">#6e6a86</SolidColorBrush>
+                    <SolidColorBrush x:Key="SubtleForeground">#908caa</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextForeground">#e0def4</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="Love">#eb6f92</SolidColorBrush>
+                    <SolidColorBrush x:Key="Gold">#f6c177</SolidColorBrush>
+                    <SolidColorBrush x:Key="Rose">#ea9a97</SolidColorBrush>
+                    <SolidColorBrush x:Key="Pine">#3e8fb0</SolidColorBrush>
+                    <SolidColorBrush x:Key="Foam">#9ccfd8</SolidColorBrush>
+                    <SolidColorBrush x:Key="Iris">#c4a7e7</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="HighlightLow">#2a283e</SolidColorBrush>
+                    <SolidColorBrush x:Key="HighlightMedium">#44415a</SolidColorBrush>
+                    <SolidColorBrush x:Key="HighlightHigh">#56526e</SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="PrimaryBackground">#faf4ed</SolidColorBrush>
+                    <SolidColorBrush x:Key="SecondaryBackground">#fffaf3</SolidColorBrush>
+                    <SolidColorBrush x:Key="TertiaryBackground">#f2e9e1</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="MutedForeground">#9893a5</SolidColorBrush>
+                    <SolidColorBrush x:Key="SubtleForeground">#797593</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextForeground">#575279</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="Love">#b4637a</SolidColorBrush>
+                    <SolidColorBrush x:Key="Gold">#ea9d34</SolidColorBrush>
+                    <SolidColorBrush x:Key="Rose">#d7827e</SolidColorBrush>
+                    <SolidColorBrush x:Key="Pine">#286983</SolidColorBrush>
+                    <SolidColorBrush x:Key="Foam">#56949f</SolidColorBrush>
+                    <SolidColorBrush x:Key="Iris">#907aa9</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="HighlightLow">#f4ede8</SolidColorBrush>
+                    <SolidColorBrush x:Key="HighlightMedium">#dfdad9</SolidColorBrush>
+                    <SolidColorBrush x:Key="HighlightHigh">#cecacd</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+             
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
