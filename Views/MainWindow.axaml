@@ -6,6 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="820" d:DesignHeight="450"
         x:Class="RssReader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        xmlns:view="clr-namespace:RssReader.Views"
         Width="820" Height="450"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sharp Reader">
@@ -24,9 +25,16 @@
             <Grid RowDefinitions="160, *" ShowGridLines="True">
                 <StackPanel Spacing="5">
                     <TextBox Margin="0 0 0 10"></TextBox>
-                    <Button HorizontalAlignment="Stretch">Feed</Button>
-                    <Button HorizontalAlignment="Stretch">Channels</Button>
-                    <Button HorizontalAlignment="Stretch">Bookmarks</Button>
+                    <Button HorizontalAlignment="Stretch" 
+                            Command="{Binding ChangeToFeedCommand}">
+                        Feed
+                    </Button>
+                    <Button HorizontalAlignment="Stretch"
+                            Command="{Binding ChangeToChannelsCommand}">
+                        Channels
+                    </Button>
+                    <Button HorizontalAlignment="Stretch"
+                            Command="{Binding ChangeToBookmarksCommand}">Bookmarks</Button>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
                     <TextBlock Name="CategoryHeader">Category</TextBlock>
@@ -35,7 +43,9 @@
         </Border>
         <Border Grid.Column="1" Name="MainContentWrapper">
             <Grid RowDefinitions="*" ColumnDefinitions="*">
-                <Border Name="MainContent"></Border>
+                <Border Name="MainContent">
+                    <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+                </Border>
                 <Button 
                     Name="AddButton"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
