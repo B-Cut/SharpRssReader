@@ -1,8 +1,19 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
-        <Border Padding="20">
-            <!-- Add Controls for Previewer Here -->
+        <!-- Very basic, here just to test the sidebar -->
+        <Border Name="SideBar" Padding="20">
+            <Grid RowDefinitions="160, *" ShowGridLines="True">
+                <StackPanel Spacing="5">
+                    <TextBox Margin="0 0 0 10"></TextBox>
+                    <Button Classes="Active" >Feed</Button>
+                    <Button >Channels</Button>
+                    <Button >Bookmarks</Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
+                    <TextBlock Name="CategoryHeader">Category</TextBlock>
+                </StackPanel>
+            </Grid>
         </Border>
     </Design.PreviewWith>
 
@@ -28,6 +39,11 @@
         <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+    </Style>
+    <Style Selector="Button.Active">
+        <Setter Property="Background" Value="{DynamicResource Iris}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource HighlightLow}"></Setter>
+        <!-- TODO: Add a shadow to active button -->
     </Style>
     <Style Selector="TextBlock#CategoryHeader">
         <Setter Property="FontSize" Value="12"></Setter>

@@ -38,4 +38,5 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         CurrentViewModel = _bookmarksViewModel;
     }
+    
 }

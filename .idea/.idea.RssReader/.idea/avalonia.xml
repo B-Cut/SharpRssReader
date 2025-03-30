@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="RssReader.csproj" />
+        <entry key="Assets/BorderedButton.axaml" value="RssReader.csproj" />
         <entry key="Assets/ColorScheme.axaml" value="RssReader.csproj" />
         <entry key="Styles/ColorScheme.axaml" value="RssReader.csproj" />
         <entry key="Styles/MainWindowStyle.axaml" value="RssReader.csproj" />

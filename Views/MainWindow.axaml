@@ -23,11 +23,14 @@
         
         <Border Name="SideBar" Padding="15">
             <Grid RowDefinitions="160, *" ShowGridLines="True">
-                <StackPanel Spacing="5">
+                <StackPanel Name="ButtonPanel" Spacing="5">
                     <TextBox Margin="0 0 0 10"></TextBox>
-                    <Button Command="{Binding ChangeToFeedCommand}">Feed</Button>
-                    <Button Command="{Binding ChangeToChannelsCommand}">Channels</Button>
-                    <Button Command="{Binding ChangeToBookmarksCommand}">Bookmarks</Button>
+                    <Button Command="{Binding ChangeToFeedCommand}"
+                            Click="Button_Click">Feed</Button>
+                    <Button Command="{Binding ChangeToChannelsCommand}"
+                            Click="Button_Click">Channels</Button>
+                    <Button Command="{Binding ChangeToBookmarksCommand}"
+                            Click="Button_Click">Bookmarks</Button>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
                     <TextBlock Name="CategoryHeader">Category</TextBlock>
