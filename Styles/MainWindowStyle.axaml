@@ -40,7 +40,11 @@
         <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
     </Style>
-    <Style Selector="Button.Active">
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource HighlightHigh}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+    </Style>
+    <Style Selector="Button.Active /template/ ContentPresenter">
         <Setter Property="Background" Value="{DynamicResource Iris}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource HighlightLow}"></Setter>
         <!-- TODO: Add a shadow to active button -->
