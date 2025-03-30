@@ -25,11 +25,16 @@
             <Grid RowDefinitions="160, *" ShowGridLines="True">
                 <StackPanel Name="ButtonPanel" Spacing="5">
                     <TextBox Margin="0 0 0 10"></TextBox>
-                    <Button Command="{Binding ChangeToFeedCommand}"
-                            Click="Button_Click">Feed</Button>
-                    <Button Command="{Binding ChangeToChannelsCommand}"
+                    <Button Command="{Binding ChangeToPageCommand}"
+                            CommandParameter="{Binding FeedText}"
+                            Content="{Binding FeedText}"
+                            Click="Button_Click"></Button>
+                    <Button Command="{Binding ChangeToPageCommand}"
+                            CommandParameter="{Binding ChannelText}"
+                            Classes="Active"
                             Click="Button_Click">Channels</Button>
-                    <Button Command="{Binding ChangeToBookmarksCommand}"
+                    <Button Command="{Binding ChangeToPageCommand}"
+                            CommandParameter="{Binding BookmarksText}"
                             Click="Button_Click">Bookmarks</Button>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
@@ -40,7 +45,7 @@
         <Border Grid.Column="1" Name="MainContentWrapper">
             <Grid RowDefinitions="*" ColumnDefinitions="*">
                 <Border Name="MainContent">
-                    <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+                    <ContentControl Content="{Binding CurrentPage}"></ContentControl>
                 </Border>
                 <Button 
                     Name="AddButton"

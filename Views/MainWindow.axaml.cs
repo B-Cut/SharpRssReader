@@ -1,5 +1,8 @@
+using System;
 using System.Linq;
 using Avalonia.Controls;
+using RssReader.Enums;
+using RssReader.ViewModels;
 
 namespace RssReader.Views;
 
@@ -8,14 +11,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        
-        // too
-        var initialButton = (from ctrl 
-                            in this.GetControl<StackPanel>("ButtonPanel").Children
-                            where (ctrl is Button && (ctrl as Button).Content.Equals("Channels"))
-                            select ctrl).First();
-        
-        initialButton.Classes.Add("Active");
+       
     }
 
     // Maybe not the most efficient way to do it, but it obeys MVVM

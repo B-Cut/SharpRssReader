@@ -1,9 +1,13 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
+using RssReader.Enums;
+using RssReader.Factories;
 using RssReader.ViewModels;
 using RssReader.Views;
 
@@ -18,6 +22,26 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        var collection = new ServiceCollection();
+        
+        collection.AddSingleton<MainWindowViewModel>();
+        
+        collection.AddTransient<BookmarksViewModel>();
+        collection.AddTransient<ChannelsViewModel>();
+        collection.AddTransient<FeedViewModel>();
+
+        collection.AddSingleton<Func<PageNames, PageViewModel>>(x => name => name switch
+        {
+            PageNames.Feed => new FeedViewModel(),
+            PageNames.Channel => new ChannelsViewModel(),
+            PageNames.Bookmarks => new BookmarksViewModel(),
+            _ => throw new InvalidOperationException()
+        });
+        
+        collection.AddSingleton<PageFactory>();
+        
+        var serviceProvider = collection.BuildServiceProvider();
+        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
@@ -25,7 +49,7 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(),
+                DataContext = serviceProvider.GetService<MainWindowViewModel>(),
             };
         }
 
