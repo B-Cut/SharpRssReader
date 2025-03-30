@@ -1,0 +1,36 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="Border#MainContentWrapper">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
+    </Style>
+        
+    <Style Selector="Button#AddButton">
+        <Setter Property="Background" Value="{DynamicResource Foam}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource HighlightMedium}"></Setter>
+    </Style>
+        
+        
+    <!-- Sidebar Styling-->
+    <Style Selector="Border#SideBar">
+        <Setter Property="Background" Value="{DynamicResource TertiaryBackground}"></Setter>
+    </Style>
+    <Style Selector="Border#SideBar TextBox">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"></Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource Iris}"></Setter>
+    </Style>
+    <Style Selector="Border#SideBar Button">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+    </Style>
+    <Style Selector="TextBlock#CategoryHeader">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+    </Style>
+</Styles>

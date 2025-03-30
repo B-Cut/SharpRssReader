@@ -4,6 +4,9 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="RssReader.csproj" />
+        <entry key="Assets/ColorScheme.axaml" value="RssReader.csproj" />
+        <entry key="Styles/ColorScheme.axaml" value="RssReader.csproj" />
+        <entry key="Styles/MainWindowStyle.axaml" value="RssReader.csproj" />
         <entry key="Views/BookmarksView.axaml" value="RssReader.csproj" />
         <entry key="Views/ChannelsView.axaml" value="RssReader.csproj" />
         <entry key="Views/FeedView.axaml" value="RssReader.csproj" />

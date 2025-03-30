@@ -3,11 +3,11 @@
         xmlns:vm="using:RssReader.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="820" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="450"
         x:Class="RssReader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         xmlns:view="clr-namespace:RssReader.Views"
-        Width="820" Height="450"
+        Width="900" Height="450"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sharp Reader">
 
@@ -25,16 +25,9 @@
             <Grid RowDefinitions="160, *" ShowGridLines="True">
                 <StackPanel Spacing="5">
                     <TextBox Margin="0 0 0 10"></TextBox>
-                    <Button HorizontalAlignment="Stretch" 
-                            Command="{Binding ChangeToFeedCommand}">
-                        Feed
-                    </Button>
-                    <Button HorizontalAlignment="Stretch"
-                            Command="{Binding ChangeToChannelsCommand}">
-                        Channels
-                    </Button>
-                    <Button HorizontalAlignment="Stretch"
-                            Command="{Binding ChangeToBookmarksCommand}">Bookmarks</Button>
+                    <Button Command="{Binding ChangeToFeedCommand}">Feed</Button>
+                    <Button Command="{Binding ChangeToChannelsCommand}">Channels</Button>
+                    <Button Command="{Binding ChangeToBookmarksCommand}">Bookmarks</Button>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
                     <TextBlock Name="CategoryHeader">Category</TextBlock>
