@@ -3,12 +3,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
-             x:Class="RssReader.Views.ChannelsView">
+             x:Class="RssReader.Views.ChannelsView"
+             xmlns:vm="clr-namespace:RssReader.ViewModels"
+             xmlns:view="clr-namespace:RssReader.Views"
+             x:DataType="vm:ChannelsViewModel">
     
-    <TextBlock 
-        HorizontalAlignment="Center" VerticalAlignment="Center"
-        FontSize="48"
-        FontWeight="Bold">
-        This is the Channels View.
-    </TextBlock>
+    <Design.DataContext>
+        <vm:DesignChannelViewModel></vm:DesignChannelViewModel>
+    </Design.DataContext>
+    
+    
+    <ScrollViewer>
+        <ItemsControl ItemsSource="{Binding Channels}" HorizontalAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" ></WrapPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Margin="20" HorizontalAlignment="Stretch">
+                        <view:ChannelCardView></view:ChannelCardView>
+                    </ContentControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        </ScrollViewer>
 </UserControl>
