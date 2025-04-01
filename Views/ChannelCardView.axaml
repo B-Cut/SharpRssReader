@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:RssReader.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="180" d:DesignHeight="240"
+             x:Class="RssReader.Views.ChannelCardView"
+             x:DataType="vm:ChannelCardViewModel">
+    
+    <Design.DataContext>
+        <vm:ChannelCardViewModel></vm:ChannelCardViewModel>
+    </Design.DataContext>   
+    
+    <Border CornerRadius="15" Background="Beige" Padding="8" BoxShadow="3 3">
+        <StackPanel>
+            <Ellipse Height="80" Width="80" Fill="Gray" Margin="4"></Ellipse>
+            <Label Content="{Binding Title}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+            <Label Content="{Binding LastBuildDate}" FontSize="12" HorizontalAlignment="Center"></Label>
+            <TextBlock 
+                Text="{Binding Description}" 
+                HorizontalAlignment="Center"
+                FontSize="12"
+                TextWrapping="Wrap"
+                TextAlignment="Left"
+                Margin="10 0 10 0"></TextBlock>
+        </StackPanel>
+    </Border>
+    
+    
+</UserControl>

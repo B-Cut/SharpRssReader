@@ -7,7 +7,8 @@
         x:Class="RssReader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         xmlns:view="clr-namespace:RssReader.Views"
-        Width="900" Height="450"
+        MinWidth="900" MinHeight="450"
+        WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
         Title="Sharp Reader">
 
