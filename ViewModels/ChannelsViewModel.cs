@@ -10,6 +10,10 @@ public partial class ChannelsViewModel : PageViewModel
     public ChannelsViewModel()
     {
         PageName = PageNames.Channel;
+        // Temporary
+        Channels.Add(
+            new ChannelModel("A sample title", "A sample description", "link")
+            );
     }
     
     [ObservableProperty]

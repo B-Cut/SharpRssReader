@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:RssReader.ViewModels"
              mc:Ignorable="d" d:DesignWidth="180" d:DesignHeight="240"
-             MaxWidth="180" MaxHeight="240"
+             MinWidth="180" MinHeight="240"
              x:Class="RssReader.Views.ChannelCardView"
              x:DataType="vm:ChannelCardViewModel"
              DataContextChanged="StyledElement_OnDataContextChanged">
@@ -13,18 +13,16 @@
         <vm:ChannelCardViewModel></vm:ChannelCardViewModel>
     </Design.DataContext>   
     
-    <Border CornerRadius="15" Background="Beige" Padding="8" x:Name="Card">
+
+    <Border Classes="ChannelCard" CornerRadius="15" Padding="8" x:Name="Card" >
         <StackPanel>
             <Ellipse Height="80" Width="80" Fill="Gray" Margin="4"></Ellipse>
-            <Label Content="{Binding Title}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"></Label>
-            <Label Content="{Binding LastBuildDate}" FontSize="12" HorizontalAlignment="Center"></Label>
+            <Label Content="{Binding Title}" Classes="ChannelCardTitle"></Label>
+            <Label Content="{Binding LastBuildDate}" Classes="ChannelCardDate"></Label>
             <TextBlock 
+                Classes="ChannelCardDescription"
                 Text="{Binding Description}" 
-                HorizontalAlignment="Center"
-                FontSize="12"
-                TextWrapping="Wrap"
-                TextAlignment="Left"
-                Margin="10 0 10 0"></TextBlock>
+                ></TextBlock>
         </StackPanel>
     </Border>
     

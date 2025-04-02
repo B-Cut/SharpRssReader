@@ -6,15 +6,20 @@
              x:Class="RssReader.Views.ChannelsView"
              xmlns:vm="clr-namespace:RssReader.ViewModels"
              xmlns:view="clr-namespace:RssReader.Views"
-             x:DataType="vm:ChannelsViewModel">
+             x:DataType="vm:ChannelsViewModel"
+             d:Background="{DynamicResource PrimaryBackground}">
     
     <Design.DataContext>
         <vm:DesignChannelViewModel></vm:DesignChannelViewModel>
     </Design.DataContext>
     
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/ChannelsViewStyle.axaml"></StyleInclude>
+    </UserControl.Styles>
+
     
-    <ScrollViewer>
-        <ItemsControl ItemsSource="{Binding Channels}" HorizontalAlignment="Center">
+    <ScrollViewer Background="{DynamicResource PrimaryBackground}">
+        <ItemsControl ItemsSource="{Binding Channels}" HorizontalAlignment="Left">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" ></WrapPanel>
@@ -22,7 +27,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl Margin="20" HorizontalAlignment="Stretch">
+                    <ContentControl Margin="20" HorizontalAlignment="Stretch" Classes="ChannelItem">
                         <view:ChannelCardView></view:ChannelCardView>
                     </ContentControl>
                 </DataTemplate>

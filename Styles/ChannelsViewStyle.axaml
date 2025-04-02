@@ -1,0 +1,48 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector="Border.ChannelCard">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource Iris}"></Setter>
+    </Style>
+    
+    <Style Selector="Border.ChannelCard Label">
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"></Setter>
+    </Style>
+    <Style Selector="Border.ChannelCard TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"></Setter>
+    </Style>
+    
+    <Style Selector="Border.ChannelCard:pointerover">
+        <Setter Property="Background" Value="{DynamicResource HighlightMedium}"></Setter>
+    </Style>
+    
+    <Style Selector="ContentControl.ChannelItem:pointerover">
+        <Setter Property="RenderTransform" Value="Scale(1.05)"></Setter>
+    </Style>
+    
+    <Style Selector="Label.ChannelCardTitle">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+    <Style Selector="Label.ChannelCardDate">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="Light"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0 0 0 3"></Setter>
+    </Style>
+    <Style Selector="TextBlock.ChannelCardDescription">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        <Setter Property="Margin" Value="10 0"></Setter>
+    </Style>
+</Styles>
