@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace RssReader.Models;
@@ -18,6 +19,16 @@ public class ItemModel
         Link = link;
         Description = description;
     }
+    
+    /// <summary>
+    /// The ID of the item in the database
+    /// </summary>
+    [XmlIgnore]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long Id { get; set; }
+    
+    [XmlIgnore]
+    public long ChannelId { get; set; }
 
     [XmlIgnore] // may not be needed
     private string _title;

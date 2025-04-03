@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace RssReader.Models;
@@ -17,6 +18,16 @@ public class ChannelImageModel
         Title = title;
         SiteLink = originalLink;
     }
+    
+    /// <summary>
+    /// The Image ID on the database.
+    /// </summary>
+    [XmlIgnore]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long Id { get; set; }
+    
+    [XmlIgnore]
+    public long ChannelId { get; set; }
     
     /// <summary>
     /// The URL pointing to the channel's image.

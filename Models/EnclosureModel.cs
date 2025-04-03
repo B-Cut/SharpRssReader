@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace RssReader.Models;
@@ -18,6 +19,14 @@ public class EnclosureModel
         Length = length;
         MimeType = mimeType;
     }
+    
+    // Maybe not needed, but better to be sure
+    [XmlIgnore]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long Id { get; set; }
+    
+    [XmlIgnore]
+    public long ItemId { get; set; }
     
     /// <summary>
     /// A link pointing to the enclosure content.

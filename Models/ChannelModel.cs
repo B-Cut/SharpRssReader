@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
@@ -28,6 +29,13 @@ public class ChannelModel
     // This constructor only exists for the purposes of deserialization
     internal ChannelModel()
     { }
+    
+    /// <summary>
+    /// The channel ID on the local database
+    /// </summary>
+    [XmlIgnore]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long Id { get; set; }
     
     
     public ChannelModel(string title, string description, string link)
