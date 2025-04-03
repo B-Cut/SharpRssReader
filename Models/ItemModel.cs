@@ -31,14 +31,14 @@ public class ItemModel
     public long ChannelId { get; set; }
 
     [XmlIgnore] // may not be needed
-    private string _title;
+    private string _title = string.Empty;
     /// <summary>
     /// Title of the channel.
     /// </summary>
     [XmlElement("title")]
     public string Title
     {
-        get { return _title ?? "No Title"; }
+        get { return _title.Length != 0 ? _title : "No Title"; }
         set { _title = value; }
     }
 

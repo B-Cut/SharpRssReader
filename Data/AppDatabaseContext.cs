@@ -5,14 +5,21 @@ namespace RssReader.Data;
 
 public class AppDatabaseContext : DbContext
 {
-    public DbSet<ChannelModel> Channels { get; set; }
-    public DbSet<ItemModel> Items { get; set; }
-    public DbSet<ChannelImageModel> ChannelImages { get; set; }
-    public DbSet<EnclosureModel> Enclosures { get; set; }
+    public virtual DbSet<ChannelModel> Channels { get; set; }
+    public virtual DbSet<ItemModel> Items { get; set; }
+    public virtual DbSet<ChannelImageModel> ChannelImages { get; set; }
+    public virtual DbSet<EnclosureModel> Enclosures { get; set; }
 
+    private readonly string _sourceDbName;
+
+    public AppDatabaseContext(string sourceDbName="RssReaderData")
+    {
+        _sourceDbName = sourceDbName;
+    }
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source=RssReaderData.db");
+        optionsBuilder.UseSqlite($"Data Source={_sourceDbName}.db");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

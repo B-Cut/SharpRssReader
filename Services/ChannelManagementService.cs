@@ -1,24 +1,42 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using RssReader.Models;
 
 namespace RssReader.Services;
 
-public static class ChannelManagementService
+public class ChannelManagementService(DbContext context)
 {
-    public static ChannelModel ReceiveFromFile(string path)
+    private DbContext _context = context;
+
+    private async Task _AddChannelToDb(ChannelModel channel)
+    {
+        var canConnectToDb = await _context.Database.CanConnectAsync();
+
+        if (!canConnectToDb)
+        {
+            throw new InvalidOperationException("Can't connect to database");
+        }
+        await _context.AddAsync(channel);
+        await _context.SaveChangesAsync();
+    }
+    public async Task<ChannelModel> ReceiveFromFile(string path)
     {
         if (!File.Exists(path))
         {
             throw new FileNotFoundException($"File {path} not found");
         }
-        
-        return XmlParsingService.CreateChannelModelFromFile(path);
+
+        var model = XmlParsingService.CreateChannelModelFromFile(path);
+        await _AddChannelToDb(model);
+        return model;
     }
 
-    public static async Task<ChannelModel> ReceiveFromUrl(string url)
+    public async Task<ChannelModel> ReceiveFromUrl(string url)
     {
         HttpClient tempClient = new HttpClient()
         {
@@ -30,6 +48,8 @@ public static class ChannelManagementService
         
         var xml = await response.Content.ReadAsStringAsync();
         
-        return XmlParsingService.CreateChannelModelFromString(xml);
+        var model = XmlParsingService.CreateChannelModelFromString(xml);
+        await _AddChannelToDb(model);
+        return model;
     }
 }

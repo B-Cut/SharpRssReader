@@ -6,8 +6,11 @@ using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using RssReader.Data;
 using RssReader.Enums;
 using RssReader.Factories;
+using RssReader.Services;
 using RssReader.ViewModels;
 using RssReader.Views;
 
@@ -39,6 +42,9 @@ public partial class App : Application
         });
         
         collection.AddSingleton<PageFactory>();
+
+        collection.AddTransient<AppDatabaseContext>();
+        collection.AddTransient<ChannelManagementService>();
         
         var serviceProvider = collection.BuildServiceProvider();
         
