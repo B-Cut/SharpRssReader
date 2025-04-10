@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using RssReader.Data;
 using RssReader.Models;
 
 namespace RssReader.Services;
@@ -51,5 +53,10 @@ public class ChannelManagementService(DbContext context)
         var model = XmlParsingService.CreateChannelModelFromString(xml);
         await _AddChannelToDb(model);
         return model;
+    }
+
+    public async Task<List<ChannelModel>> GetAllChannels()
+    {
+        return await (_context as AppDatabaseContext)!.Channels.ToListAsync();
     }
 }
