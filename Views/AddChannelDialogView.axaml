@@ -8,12 +8,10 @@
         x:Class="RssReader.Views.AddChannelDialogView"
         >
     
-    <Panel>
         <TextBlock FontSize="32" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    Foreground="{DynamicResource SubtleForeground}">
             ADD CHANNEL DIALOG
         </TextBlock>
-    </Panel>
     
 </UserControl>

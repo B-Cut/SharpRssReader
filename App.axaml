@@ -23,5 +23,6 @@
         <FluentTheme />
         <dialogHost:DialogHostStyles/>
         <StyleInclude Source="/Styles/MainWindowStyle.axaml"></StyleInclude>
+        <StyleInclude Source="/Styles/AddChannelDialogStyle.axaml"></StyleInclude>
     </Application.Styles>
 </Application>

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using RssReader.Enums;
 using RssReader.ViewModels;
@@ -11,7 +12,9 @@ public partial class MainWindowView : Window
     public MainWindowView()
     {
         InitializeComponent();
-       
+        #if DEBUG
+            this.AttachDevTools();
+        #endif
     }
 
     // Maybe not the most efficient way to do it, but it obeys MVVM

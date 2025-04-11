@@ -1,0 +1,15 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dh="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    <Style Selector="dh|DialogHost:focus-within">
+        <Setter Property="OverlayBackground" Value="#4c3d54"></Setter>   
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"></Setter>
+    </Style>
+</Styles>
