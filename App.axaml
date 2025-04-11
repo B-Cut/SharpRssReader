@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="RssReader.App"
              xmlns:local="using:RssReader"
+             xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -20,6 +21,7 @@
              
     <Application.Styles>
         <FluentTheme />
+        <dialogHost:DialogHostStyles/>
         <StyleInclude Source="/Styles/MainWindowStyle.axaml"></StyleInclude>
     </Application.Styles>
 </Application>

@@ -1,17 +1,25 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using HanumanInstitute.MvvmDialogs;
+using HanumanInstitute.MvvmDialogs.Avalonia;
 using RssReader.ViewModels;
 
 namespace RssReader;
 
-public class ViewLocator : IDataTemplate
+public class ViewLocator : ViewLocatorBase
 {
-    public Control? Build(object? param)
+    
+    /// <inheritdoc />
+    protected override string GetViewName(object viewModel) => viewModel.GetType().FullName!.Replace("ViewModel", "View");
+    
+    /*public Control? Build(object? param)
     {
         if (param is null)
             return null;
 
+        
+        
         var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
         var type = Type.GetType(name);
 
@@ -26,5 +34,5 @@ public class ViewLocator : IDataTemplate
     public bool Match(object? data)
     {
         return data is ViewModelBase;
-    }
+    }*/
 }

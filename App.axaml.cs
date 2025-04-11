@@ -5,6 +5,8 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using HanumanInstitute.MvvmDialogs;
+using HanumanInstitute.MvvmDialogs.Avalonia;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using RssReader.Data;
@@ -22,7 +24,7 @@ public partial class App : Application
     {
         AvaloniaXamlLoader.Load(this);
     }
-
+    
     public override void OnFrameworkInitializationCompleted()
     {
         var collection = new ServiceCollection();
@@ -32,6 +34,7 @@ public partial class App : Application
         collection.AddTransient<BookmarksViewModel>();
         collection.AddTransient<ChannelsViewModel>();
         collection.AddTransient<FeedViewModel>();
+        collection.AddTransient<AddChannelDialogViewModel>();
 
         collection.AddSingleton<Func<PageNames, PageViewModel>>(x => name => name switch
         {
@@ -45,19 +48,28 @@ public partial class App : Application
 
         collection.AddTransient<AppDatabaseContext>();
         collection.AddTransient<ChannelManagementService>();
+
+        collection.AddTransient(typeof(IDialogService), (obj) => 
+            (IDialogService) new DialogService(
+                new DialogManager(
+                    dialogFactory: new DialogFactory().AddDialogHost(),
+                    viewLocator: new ViewLocator()
+                    ), viewModelFactory: obj.GetRequiredService));
         
-        var serviceProvider = collection.BuildServiceProvider();
+         var serviceProvider = collection.BuildServiceProvider();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
-            desktop.MainWindow = new MainWindow
+            desktop.MainWindow = new MainWindowView
             {
                 DataContext = serviceProvider.GetService<MainWindowViewModel>(),
             };
         }
+        
+        GC.KeepAlive(typeof(DialogService));
 
         base.OnFrameworkInitializationCompleted();
     }

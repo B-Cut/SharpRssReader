@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using HanumanInstitute.MvvmDialogs;
 using RssReader.Enums;
 using RssReader.Factories;
+using RssReader.Models;
+using RssReader.Services;
 
 namespace RssReader.ViewModels;
 
@@ -17,13 +21,15 @@ public partial class MainWindowViewModel : ViewModelBase
     public string BookmarksText => _bookmarksText;
 
     private PageFactory _pageFactory;
+    private IDialogService _dialogService;
     
     [ObservableProperty] 
     private PageViewModel _currentPage;
     
-    public MainWindowViewModel(PageFactory factory)
+    public MainWindowViewModel(PageFactory factory, IDialogService dialogService)
     {
         _pageFactory = factory;
+        _dialogService = dialogService;
         CurrentPage = _pageFactory.Create(PageNames.Channel);
     }
     
@@ -43,5 +49,10 @@ public partial class MainWindowViewModel : ViewModelBase
         
         CurrentPage = _pageFactory.Create(name);
     }
-    
+
+    [RelayCommand]
+    private async Task ShowAddChannelDialog()
+    {
+        await _dialogService.ShowAddChannelDialogAsync(this);
+    }
 }

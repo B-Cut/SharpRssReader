@@ -3,8 +3,9 @@
         xmlns:vm="using:RssReader.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
         mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="450"
-        x:Class="RssReader.Views.MainWindow"
+        x:Class="RssReader.Views.MainWindowView"
         x:DataType="vm:MainWindowViewModel"
         xmlns:view="clr-namespace:RssReader.Views"
         MinWidth="900" MinHeight="450"
@@ -44,15 +45,24 @@
             </Grid>
         </Border>
         <Border Grid.Column="1" Name="MainContentWrapper">
-            <Grid RowDefinitions="*" ColumnDefinitions="*">
-                <Border Name="MainContent">
-                    <ContentControl Content="{Binding CurrentPage}"></ContentControl>
-                </Border>
-                <Button 
-                    Name="AddButton"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                    Margin="10">Add</Button>
-            </Grid>
+            
+            <dialogHost:DialogHost>
+                
+                <dialogHost:DialogHost.DialogContent></dialogHost:DialogHost.DialogContent>
+                
+                <Grid RowDefinitions="*" ColumnDefinitions="*">
+                    <Border Name="MainContent">
+                        <ContentControl Content="{Binding CurrentPage}"></ContentControl>
+                    </Border>
+                    <Button 
+                        Name="AddButton"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="10"
+                        Command="{Binding ShowAddChannelDialogCommand}">Add</Button>
+                </Grid>
+                
+            </dialogHost:DialogHost>
+            
         </Border>
     </Grid>
 
