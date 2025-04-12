@@ -11,9 +11,9 @@ using RssReader.Models;
 
 namespace RssReader.Services;
 
-public class ChannelManagementService(DbContext context)
+public class ChannelManagementService(AppDatabaseContext context)
 {
-    private DbContext _context = context;
+    private AppDatabaseContext _context = context;
 
     private async Task _AddChannelToDb(ChannelModel channel)
     {
@@ -57,6 +57,6 @@ public class ChannelManagementService(DbContext context)
 
     public async Task<List<ChannelModel>> GetAllChannels()
     {
-        return await (_context as AppDatabaseContext)!.Channels.ToListAsync();
+        return await _context.Channels.ToListAsync();
     }
 }

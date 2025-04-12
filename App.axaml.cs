@@ -44,17 +44,17 @@ public partial class App : Application
             _ => throw new InvalidOperationException()
         });
         
-        collection.AddSingleton<PageFactory>();
+        collection.AddTransient<PageFactory>();
 
         collection.AddTransient<AppDatabaseContext>();
         collection.AddTransient<ChannelManagementService>();
 
-        collection.AddTransient(typeof(IDialogService), (obj) => 
+        collection.AddSingleton(typeof(IDialogService), (provider) => 
             (IDialogService) new DialogService(
                 new DialogManager(
                     dialogFactory: new DialogFactory().AddDialogHost(),
                     viewLocator: new ViewLocator()
-                    ), viewModelFactory: obj.GetRequiredService));
+                    ), viewModelFactory: x => provider.GetRequiredService(x)));
         
          var serviceProvider = collection.BuildServiceProvider();
         
