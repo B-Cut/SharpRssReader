@@ -26,8 +26,7 @@ public partial class AddChannelDialogViewModel : ViewModelBase, IModalDialogView
         Console.WriteLine($"Add via URL: {AddViaUrl}");
         if(string.IsNullOrWhiteSpace(InputContent)) return;
         // TODO: Implement error messages
-
-        /*
+        
         if (AddViaUrl)
         {
             await _channelManager.ReceiveFromUrl(InputContent);
@@ -35,7 +34,7 @@ public partial class AddChannelDialogViewModel : ViewModelBase, IModalDialogView
         else
         {
             await _channelManager.ReceiveFromFile(InputContent);
-        }*/
+        }
     }
     
     public AddChannelDialogViewModel(ChannelManagementService channelManager)

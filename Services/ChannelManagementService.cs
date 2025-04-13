@@ -7,13 +7,14 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RssReader.Data;
+using RssReader.Factories;
 using RssReader.Models;
 
 namespace RssReader.Services;
 
-public class ChannelManagementService(AppDatabaseContext context)
+public class ChannelManagementService(DatabaseContextFactory dbContextFactory)
 {
-    private AppDatabaseContext _context = context;
+    private AppDatabaseContext _context = dbContextFactory.Create();
 
     private async Task _AddChannelToDb(ChannelModel channel)
     {

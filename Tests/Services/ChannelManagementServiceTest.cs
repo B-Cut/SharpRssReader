@@ -6,10 +6,12 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.EntityFrameworkCore;
 using NUnit.Framework;
 using RssReader.Data;
+using RssReader.Factories;
 using RssReader.Models;
 using RssReader.Services;
 
@@ -29,13 +31,23 @@ public class ChannelManagementServiceTest
     [SetUp]
     public void Setup()
     {
-        _context = new AppDatabaseContext("TestDB");
+        var collection = new ServiceCollection();
+        collection.AddTransient(
+            typeof(DatabaseContextFactory), (_) => new DatabaseContextFactory(){DbName = "TestDb"});
+        collection.AddTransient<ChannelManagementService>();
+        var serviceProvider = collection.BuildServiceProvider();
+        
+        _context = serviceProvider.GetRequiredService<DatabaseContextFactory>().Create();
+        
         _context.Database.EnsureDeleted();
         _context.Database.EnsureCreated();
         _context.SaveChanges();
-        _sut = new ChannelManagementService(_context);
+        
+        _sut = serviceProvider.GetRequiredService<ChannelManagementService>();
     }
 
+    
+    
     [TearDown]
     public void TearDown()
     {

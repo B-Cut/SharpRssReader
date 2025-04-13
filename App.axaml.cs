@@ -46,7 +46,7 @@ public partial class App : Application
         
         collection.AddTransient<PageFactory>();
 
-        collection.AddTransient<AppDatabaseContext>();
+        collection.AddTransient(typeof(DatabaseContextFactory), (_) => new DatabaseContextFactory(){DbName = "RssReaderData"});
         collection.AddTransient<ChannelManagementService>();
 
         collection.AddSingleton(typeof(IDialogService), (provider) => 
