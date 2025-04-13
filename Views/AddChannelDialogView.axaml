@@ -3,15 +3,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+        xmlns:vm="clr-namespace:RssReader.ViewModels"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
         Width="400" Height="200"
         x:Class="RssReader.Views.AddChannelDialogView"
+        x:DataType="vm:AddChannelDialogViewModel"
         >
     
-        <TextBlock FontSize="32" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Foreground="{DynamicResource SubtleForeground}">
-            ADD CHANNEL DIALOG
-        </TextBlock>
+        <Border Padding="30 10" Width="400">
+                <StackPanel Spacing="30" HorizontalAlignment="Stretch">
+                        <ToggleButton Name="AddMethodToggle" HorizontalAlignment="Center" IsChecked="{Binding AddViaUrl}">
+                                <Border>
+                                        <StackPanel Orientation="Horizontal" Spacing="-1">
+                                                <Label Name="UrlMethodButton">URL</Label>
+                                                <Label Name="FileMethodButton">File</Label>
+                                        </StackPanel>
+                                </Border>
+                                
+                        </ToggleButton>
+                        
+                        <TextBox HorizontalAlignment="Stretch" Text="{Binding InputContent}"></TextBox>
+                        <Button HorizontalAlignment="Center" Command="{Binding AddNewChannelCommand}">Add</Button>
+                </StackPanel>  
+                
+        </Border>
+        
     
 </UserControl>

@@ -2,8 +2,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dh="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia">
     <Design.PreviewWith>
-        <Border Padding="20">
-            <!-- Add Controls for Previewer Here -->
+        <Border Padding="30 10" Width="400">
+            <StackPanel Spacing="30" HorizontalAlignment="Stretch">
+                <ToggleButton Name="AddMethodToggle" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="-1">
+                            <Label Name="UrlMethodButton">URL</Label>
+                            <Label Name="FileMethodButton">File</Label>
+                        </StackPanel>
+                </ToggleButton>
+                        
+                <TextBox HorizontalAlignment="Stretch"></TextBox>
+                <Button HorizontalAlignment="Center">Add</Button>
+            </StackPanel>  
+                
         </Border>
     </Design.PreviewWith>
 
@@ -12,4 +23,53 @@
         <Setter Property="OverlayBackground" Value="#4c3d54"></Setter>   
         <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"></Setter>
     </Style>
+    
+    
+    
+    <Style Selector="ToggleButton#AddMethodToggle">
+        <Setter Property="Background" Value="{DynamicResource TertiaryBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource MutedForeground}"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="ToggleButton#AddMethodToggle Label#FileMethodButton">
+        <Setter Property="Padding" Value="4 5 5 5"></Setter>
+        <Setter Property="CornerRadius" Value="0 5 5 0"></Setter>
+    </Style>
+    
+    <Style Selector="ToggleButton#AddMethodToggle Label#UrlMethodButton">
+        <Setter Property="Padding" Value="5 5 4 5"></Setter>
+        <Setter Property="CornerRadius" Value="5 0 0 5"></Setter>
+    </Style>
+    
+    <Style Selector="ToggleButton#AddMethodToggle:checked /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource MutedForeground}"></Setter>
+    </Style>
+    
+    <Style Selector="ToggleButton#AddMethodToggle:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource MutedForeground}"></Setter>
+    </Style>
+    
+    <Style Selector="ToggleButton#AddMethodToggle:checked Label#UrlMethodButton">
+        <Setter Property="Background" Value="{DynamicResource HighlightMedium}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"></Setter>
+    </Style>
+    <Style Selector="ToggleButton#AddMethodToggle:unchecked Label#UrlMethodButton">
+        <Setter Property="Background" Value="{DynamicResource TertiaryBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+    </Style>
+    
+    
+    <Style Selector="ToggleButton#AddMethodToggle:checked Label#FileMethodButton">
+        <Setter Property="Background" Value="{DynamicResource TertiaryBackground}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SubtleForeground}"></Setter>
+    </Style>
+    <Style Selector="ToggleButton#AddMethodToggle:unchecked Label#FileMethodButton">
+        <Setter Property="Background" Value="{DynamicResource HighlightHigh}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"></Setter>
+    </Style>
+    
+    
 </Styles>
