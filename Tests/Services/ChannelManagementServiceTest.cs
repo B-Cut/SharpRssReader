@@ -33,7 +33,7 @@ public class ChannelManagementServiceTest
     {
         var collection = new ServiceCollection();
         collection.AddTransient(
-            typeof(DatabaseContextFactory), (_) => new DatabaseContextFactory(){DbName = "TestDb"});
+            typeof(DatabaseContextFactory), (_) => new DatabaseContextFactory(){DbName = "TestDB"});
         collection.AddTransient<ChannelManagementService>();
         var serviceProvider = collection.BuildServiceProvider();
         
@@ -77,5 +77,15 @@ public class ChannelManagementServiceTest
         var model = await _sut.ReceiveFromUrl(_testFileUrl);
         
         Assert.That(model, Is.Not.Null);
+    }
+
+    [Test]
+    public async Task ShouldReturnAllChannelsFromDatabase()
+    {
+        await _sut.ReceiveFromFile(_testFilePath);
+        var channels = await _sut.GetAllChannels();
+        Assert.That(channels, Is.Not.Null);
+        Assert.That(channels, Is.Not.Empty);
+        Assert.That(channels.Count(), Is.EqualTo(1));
     }
 }

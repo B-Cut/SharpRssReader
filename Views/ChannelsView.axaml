@@ -6,6 +6,7 @@
              x:Class="RssReader.Views.ChannelsView"
              xmlns:vm="clr-namespace:RssReader.ViewModels"
              xmlns:view="clr-namespace:RssReader.Views"
+             xmlns:li="using:LoadingIndicators.Avalonia"
              x:DataType="vm:ChannelsViewModel"
              d:Background="{DynamicResource PrimaryBackground}">
     
@@ -16,22 +17,29 @@
     <UserControl.Styles>
         <StyleInclude Source="/Styles/ChannelsViewStyle.axaml"></StyleInclude>
     </UserControl.Styles>
-
     
-    <ScrollViewer Background="{DynamicResource PrimaryBackground}">
-        <ItemsControl ItemsSource="{Binding Channels}" HorizontalAlignment="Left">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" ></WrapPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl Margin="20" HorizontalAlignment="Stretch" Classes="ChannelItem">
-                        <view:ChannelCardView></view:ChannelCardView>
-                    </ContentControl>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+    <Panel>
+        
+        <li:LoadingIndicator IsActive="{Binding IsLoading}" Mode="Arc" SpeedRatio="1.2"></li:LoadingIndicator>
+        
+        <ScrollViewer Background="{DynamicResource PrimaryBackground}">
+            <ItemsControl ItemsSource="{Binding Channels}" HorizontalAlignment="Left">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" ></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl Margin="20" HorizontalAlignment="Stretch" Classes="ChannelItem">
+                            <view:ChannelCardView></view:ChannelCardView>
+                        </ContentControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
+    </Panel>
+    
+    
+    
 </UserControl>

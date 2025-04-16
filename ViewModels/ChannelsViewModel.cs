@@ -11,9 +11,6 @@ namespace RssReader.ViewModels;
 
 public partial class ChannelsViewModel : PageViewModel
 {
-    // Only for design channel
-    internal ChannelsViewModel() {}
-    
     private ChannelManagementService _channelManager;
     
     [ObservableProperty]

@@ -1,11 +1,13 @@
 using System;
+using RssReader.Factories;
 using RssReader.Models;
+using RssReader.Services;
 
 namespace RssReader.ViewModels;
 
 public class DesignChannelViewModel : ChannelsViewModel
 {
-    public DesignChannelViewModel()
+    public DesignChannelViewModel() : base(new ChannelManagementService(new DatabaseContextFactory()))
     {
         for (int i = 0; i < 10; i++)
         {

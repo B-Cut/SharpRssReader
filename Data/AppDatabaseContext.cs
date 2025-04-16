@@ -1,4 +1,8 @@
+using System;
+using Avalonia.Controls.Shapes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using RssReader.Models;
 
 namespace RssReader.Data;
@@ -11,15 +15,18 @@ public class AppDatabaseContext : DbContext
     public virtual DbSet<EnclosureModel> Enclosures { get; set; }
 
     private readonly string _sourceDbName;
-
+    
+    
     public AppDatabaseContext(string sourceDbName="RssReaderData")
     {
-        _sourceDbName = sourceDbName;
+        var folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        
+        _sourceDbName = System.IO.Path.Join(folder, sourceDbName + ".db");
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite($"Data Source={_sourceDbName}.db");
+        optionsBuilder.UseSqlite($"Data Source={_sourceDbName}");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

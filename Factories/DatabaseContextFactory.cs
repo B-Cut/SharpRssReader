@@ -1,3 +1,4 @@
+using System;
 using RssReader.Data;
 
 namespace RssReader.Factories;

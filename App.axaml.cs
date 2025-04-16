@@ -39,14 +39,15 @@ public partial class App : Application
         collection.AddSingleton<Func<PageNames, PageViewModel>>(x => name => name switch
         {
             PageNames.Feed => new FeedViewModel(),
-            PageNames.Channel => new ChannelsViewModel(),
+            PageNames.Channel => new ChannelsViewModel(x.GetRequiredService<ChannelManagementService>()),
             PageNames.Bookmarks => new BookmarksViewModel(),
             _ => throw new InvalidOperationException()
         });
         
         collection.AddTransient<PageFactory>();
 
-        collection.AddTransient(typeof(DatabaseContextFactory), (_) => new DatabaseContextFactory(){DbName = "RssReaderData"});
+        collection.AddTransient(
+            typeof(DatabaseContextFactory), (_) => new DatabaseContextFactory(){DbName = "RssReaderData"});
         collection.AddTransient<ChannelManagementService>();
 
         collection.AddSingleton(typeof(IDialogService), (provider) => 
@@ -68,6 +69,8 @@ public partial class App : Application
                 DataContext = serviceProvider.GetService<MainWindowViewModel>(),
             };
         }
+        
+        
         
         GC.KeepAlive(typeof(DialogService));
 

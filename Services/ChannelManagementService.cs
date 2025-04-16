@@ -14,18 +14,25 @@ namespace RssReader.Services;
 
 public class ChannelManagementService(DatabaseContextFactory dbContextFactory)
 {
-    private AppDatabaseContext _context = dbContextFactory.Create();
+    private DatabaseContextFactory _contextFactory = dbContextFactory;
 
     private async Task _AddChannelToDb(ChannelModel channel)
     {
-        var canConnectToDb = await _context.Database.CanConnectAsync();
-
+        
+        var context = _contextFactory.Create();
+        
+        await context.Database.EnsureCreatedAsync();
+        
+        var canConnectToDb = await context.Database.CanConnectAsync();
+    
+        
         if (!canConnectToDb)
         {
             throw new InvalidOperationException("Can't connect to database");
         }
-        await _context.AddAsync(channel);
-        await _context.SaveChangesAsync();
+        await context.AddAsync(channel);
+        await context.SaveChangesAsync();
+        Console.WriteLine($"Channel {channel.Title} has been created and added to DB");
     }
     public async Task<ChannelModel> ReceiveFromFile(string path)
     {
@@ -58,6 +65,6 @@ public class ChannelManagementService(DatabaseContextFactory dbContextFactory)
 
     public async Task<List<ChannelModel>> GetAllChannels()
     {
-        return await _context.Channels.ToListAsync();
+        return await _contextFactory.Create().Channels.ToListAsync();
     }
 }
