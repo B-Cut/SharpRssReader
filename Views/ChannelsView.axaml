@@ -20,9 +20,13 @@
     
     <Panel>
         
-        <li:LoadingIndicator IsActive="{Binding IsLoading}" Mode="Arc" SpeedRatio="1.2"></li:LoadingIndicator>
+        <li:LoadingIndicator 
+            IsActive="{Binding IsLoading}" 
+            Mode="Arcs" 
+            SpeedRatio="1.5"
+            Foreground="{DynamicResource Rose}"></li:LoadingIndicator>
         
-        <ScrollViewer Background="{DynamicResource PrimaryBackground}">
+        <ScrollViewer Background="{DynamicResource PrimaryBackground}" IsVisible="{Binding !IsLoading}">
             <ItemsControl ItemsSource="{Binding Channels}" HorizontalAlignment="Left">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
