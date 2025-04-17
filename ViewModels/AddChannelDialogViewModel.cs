@@ -7,7 +7,7 @@ using RssReader.Services;
 
 namespace RssReader.ViewModels;
 
-public partial class AddChannelDialogViewModel : ViewModelBase, IModalDialogViewModel
+public partial class AddChannelDialogViewModel : ViewModelBase, IModalDialogViewModel, ICloseable
 {
     private ChannelManagementService _channelManager;
 
@@ -35,6 +35,9 @@ public partial class AddChannelDialogViewModel : ViewModelBase, IModalDialogView
         {
             await _channelManager.ReceiveFromFile(InputContent);
         }
+
+        RequestClose!(this, EventArgs.Empty);
+        Events.OnChannelAddedAsync(this, EventArgs.Empty);
     }
     
     public AddChannelDialogViewModel(ChannelManagementService channelManager)
@@ -43,4 +46,5 @@ public partial class AddChannelDialogViewModel : ViewModelBase, IModalDialogView
     }
     
     public bool? DialogResult { get; }
+    public event EventHandler? RequestClose;
 }

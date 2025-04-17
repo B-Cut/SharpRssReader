@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:RssReader.ViewModels"
              mc:Ignorable="d" d:DesignWidth="180" d:DesignHeight="240"
-             MinWidth="180" MinHeight="240"
+             Width="180" Height="260"
              x:Class="RssReader.Views.ChannelCardView"
              x:DataType="vm:ChannelCardViewModel"
              DataContextChanged="StyledElement_OnDataContextChanged">
@@ -17,7 +17,7 @@
     <Border Classes="ChannelCard" CornerRadius="15" Padding="8" x:Name="Card" >
         <StackPanel>
             <Ellipse Height="80" Width="80" Fill="Gray" Margin="4"></Ellipse>
-            <Label Content="{Binding Title}" Classes="ChannelCardTitle"></Label>
+            <TextBlock Text="{Binding Title}" Classes="ChannelCardTitle"></TextBlock>
             <Label Content="{Binding LastBuildDate}" Classes="ChannelCardDate"></Label>
             <TextBlock 
                 Classes="ChannelCardDescription"

@@ -25,12 +25,18 @@ public partial class ChannelsViewModel : PageViewModel
     {
         PageName = PageNames.Channel;
         _channelManager = channelManager;
-        IsLoading = true;
-        Task.Run(_getAllChannels);
+
+        Events.ChannelAdded += async (s, e) => await _refreshChannels();
+        
+        Task.Run(_refreshChannels);
     }
 
-    private async Task _getAllChannels()
+    
+    
+    private async Task _refreshChannels()
     {
+        IsLoading = true;
+        Channels = new ObservableCollection<ChannelModel>();
         var channelsList = await _channelManager.GetAllChannels();
 
         if (channelsList.Count == 0)
